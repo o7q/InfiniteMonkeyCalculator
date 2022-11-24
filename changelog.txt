@@ -1,0 +1,4 @@
+~ v1.1.0
+- Display attempts while running
+- Using printf instead of cout to make displaying progressing faster
+- Made max attempts cap at the 64-bit integer instead of the 32-bit one (like you were even going to get to the 32-bit integer anyways :P)
