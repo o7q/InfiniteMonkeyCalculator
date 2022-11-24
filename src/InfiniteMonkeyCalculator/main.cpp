@@ -7,7 +7,7 @@ using namespace std;
 
 void cc();
 
-const string ver = "v1.0.1";
+const string ver = "v1.1.0";
 
 main()
 {
