@@ -12,7 +12,7 @@
 # Overview
 A super simple program I made in an hour. It allows you to simulate how many attempts it would take to get a desired string from random strings.
 
-I mostly made this for fun but I also wanted to experiment with the <b>Mersenne Twister</b> pseudorandom number generator: https://en.wikipedia.org/wiki/Mersenne_Twister
+I made this for fun using the <b>Mersenne Twister</b> pseudorandom number generator: https://en.wikipedia.org/wiki/Mersenne_Twister
 
 <b>InfiniteMonkeyCalculator</b> is based on the <b>Infinite Monkey Theorem</b>: https://en.wikipedia.org/wiki/Infinite_monkey_theorem
 
