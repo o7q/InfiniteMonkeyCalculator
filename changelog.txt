@@ -1,3 +1,10 @@
+~ v2.0.0
+- Change name from "InfiniteMonkeyCalculator" to "InfiniteMonkeySimulator"
+- Added a new feature to specify a custom alphabet
+- Made the numbers comma-separated by magnitude
+- Added a feature to specify an infinite amount of attempts (capped at the 64-bit integer limit)
+- Improved interface
+
 ~ v1.1.0
 - Display attempts while running
 - Using printf instead of cout to make displaying progressing faster
