@@ -2,7 +2,7 @@
 
 ###### Chimpanzee probably not typing Hamlet
 
-# [<b>>> Download Latest</b>](https://github.com/o7q/InfiniteMonkeySimulator/releases/download/v2.1.0/InfiniteMonkeySimulator.exe)
+# [<b>>> Download Latest</b>](https://github.com/o7q/InfiniteMonkeySimulator/releases/download/v2.1.1/InfiniteMonkeySimulator.exe)
 <h3>Simulate an immortal monkey typing on a typewriter.</h3>
 
 ---
