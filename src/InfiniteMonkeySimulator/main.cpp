@@ -74,11 +74,12 @@ void program()
                 "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             };
         // process alphabet
-        for (int i = 0; i <= 7; i++) if (alphabet_input == alphabet_types[i]) alphabet = alphabet_dictionary[i];
+        int alphabet_type_length = sizeof(alphabet_types) / sizeof(alphabet_types[0]);
+        for (int i = 0; i <= alphabet_type_length; i++) if (alphabet_input == alphabet_types[i]) alphabet = alphabet_dictionary[i];
         // handle custom alphabet
         int alphabet_type_index = 0;
-        for (int i = 0; i < 7; i++) if (alphabet_input != alphabet_types[i]) alphabet_type_index++;
-        if (alphabet_type_index == sizeof(alphabet_types) / sizeof(alphabet_types[0])) alphabet = alphabet_input;
+        for (int i = 0; i < alphabet_type_length; i++) if (alphabet_input != alphabet_types[i]) alphabet_type_index++;
+        if (alphabet_type_index == alphabet_type_length) alphabet = alphabet_input;
         // split alphabet in chars
         string s(alphabet);
         vector<char> v(s.begin(), s.end());
