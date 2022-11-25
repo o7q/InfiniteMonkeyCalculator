@@ -1,3 +1,7 @@
+~ v2.1.2
+- Make the wording more clear
+- Fix attempt calculator
+
 ~ v2.1.1
 - Improved wording
 

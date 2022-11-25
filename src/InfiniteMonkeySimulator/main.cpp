@@ -12,7 +12,7 @@ string strRep(string charIn, int amount);
 string formAtt(bool isFinal);
 void cc();
 
-const string ver = "v2.1.1";
+const string ver = "v2.1.2";
 string currentStr;
 long long int attempt;
 
@@ -91,7 +91,7 @@ void program()
         // compute attempts
         const int input_length = input.length();
         const int alphabet_length = alphabet.length();
-        const long long int attemptsApprox = pow(alphabet_length, input_length) + 1;
+        const long long int attemptsApprox = pow(alphabet_length, input_length);
         const string attemptsText = attempts == 1 ? "ATTEMPT" : "ATTEMPTS";
 
         // create vars
@@ -104,13 +104,15 @@ void program()
         mt19937 gen(rand());
         uniform_int_distribution<> dist(0, alphabet_length - 1);
 
-        cout << "\n IT WILL TAKE THE MONKEY AROUND " + formNum(attemptsApprox) + " ATTEMPTS TO TYPE \"" + input + "\"!\n SPECIFY THE ATTEMPT DISPLAY INTERVAL (a lower value displays more attempts but it is slower to calculate):\n -> ";
-        int dispInterval; cin >> dispInterval; cc();
+        cout << "\n IT WILL TAKE THE MONKEY AROUND " + formNum(attemptsApprox) + " ATTEMPTS TO TYPE \"" + input + "\"! (input 'r' to restart)\n SPECIFY THE ATTEMPT DISPLAY INTERVAL (a lower value displays more attempts but it is slower to calculate):\n -> ";
+        string dispInterval_str;
+        cin >> dispInterval_str; cc();
+        if (dispInterval_str == "r") program();
+        int dispInterval = stoi(dispInterval_str);
         cout << endl;
 
-        cout << " THE MONKEY IS READY! ENTER ANY KEY TO START... (enter 'r' to restart)\n -> ";
-        char r; cin >> r; cc();
-        if (r == 'r') program();
+        cout << " THE MONKEY IS READY! PRESS ANY KEY TO START...\n -> ";
+        system("pause");
         cout << endl;
 
         for (int i = 0; i < attempts; i++)

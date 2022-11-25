@@ -2,7 +2,7 @@
 
 ###### Chimpanzee probably not typing Hamlet
 
-# [<b>>> Download Latest</b>](https://github.com/o7q/InfiniteMonkeySimulator/releases/download/v2.1.1/InfiniteMonkeySimulator.exe)
+# [<b>>> Download Latest</b>](https://github.com/o7q/InfiniteMonkeySimulator/releases/download/v2.1.2/InfiniteMonkeySimulator.exe)
 <h3>Simulate an immortal monkey typing on a typewriter.</h3>
 
 ---
@@ -33,8 +33,8 @@ I made this for fun using the <b>Mersenne Twister</b> pseudorandom number genera
     - <b>NumLower</b>Numbers and lowercase letters only
     - <b>NumUpper</b> Numbers and uppercase letters only
     - <b>NumBoth</b> Numbers, lowercase, and uppercase letters only
-    - <b>Custom</b> Input your own
-- <b>Display Output</b> Should it output the strings (greatly slows down program)
+    - <b>Custom</b> Import a custom alphabet
+- <b>Display Output</b> Should it output the strings (greatly slows down program, inputting 'r' will reset the program)
 
 ---
 
