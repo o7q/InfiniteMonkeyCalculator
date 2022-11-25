@@ -9,12 +9,12 @@ using namespace std;
 void program();
 string formNum(long long int rawNum);
 string strRep(string charIn, int amount);
-string dispAtt(bool isFinal);
+string formAtt(bool isFinal);
 void cc();
 
-const string ver = "v2.1.0";
+const string ver = "v2.1.1";
 string currentStr;
-int attempt;
+long long int attempt;
 
 main()
 {
@@ -103,7 +103,7 @@ void program()
         mt19937 gen(rand());
         uniform_int_distribution<> dist(0, alphabet_length - 1);
 
-        cout << "\n IT WILL TAKE AROUND " + formNum(attemptsApprox) + " ATTEMPTS FOR THE MONKEY TO TYPE \"" + input + "\"!\n SPECIFY A DISPLAY ATTEMPT INTERVAL (a lower value displays more attempts but it is slower to calculate):\n -> ";
+        cout << "\n IT WILL TAKE THE MONKEY AROUND " + formNum(attemptsApprox) + " ATTEMPTS TO TYPE \"" + input + "\"!\n SPECIFY THE ATTEMPT DISPLAY INTERVAL (a lower value displays more attempts but it is slower to calculate):\n -> ";
         int dispInterval; cin >> dispInterval; cc();
         cout << endl;
 
@@ -119,13 +119,13 @@ void program()
             attempt++;
 
             dispCount++;
-            if (dispCount == dispInterval) { dispCount = 0; printf(dispAtt(false).c_str()); }
+            if (dispCount == dispInterval) { dispCount = 0; printf(formAtt(false).c_str()); }
 
             if (currentStr == input)
             {
-                cout << endl << dispAtt(true);
+                cout << endl << formAtt(true);
                 isRunning = false;
-                cout << "\n FOUND \"" + input + "\" IN " + formNum(attempt) + " " + attemptsText + "! (max: " + formNum(attempts) + ")\n TRY ANOTHER? (y = yes | anything else = no)\n -> ";
+                cout << "\n THE MONKEY TYPED \"" + input + "\" IN " + formNum(attempt) + " " + attemptsText + "! (max: " + formNum(attempts) + ")\n TRY ANOTHER? (y = yes | anything else = no)\n -> ";
                 char r; cin >> r; cc();
                 if (r == 'y') break; else _Exit(0);
             }
@@ -134,7 +134,7 @@ void program()
 
         if (finalStr != input && isRunning)
         {
-            cout << "\n COULD NOT FIND \"" + input + "\" IN " + formNum(attempts) + " " + attemptsText +"!\n TRY ANOTHER? (y = yes | anything else = no)\n -> ";
+            cout << "\n THE MONKEY DID NOT TYPE \"" + input + "\" IN " + formNum(attempts) + " " + attemptsText +"!\n TRY ANOTHER? (y = yes | anything else = no)\n -> ";
             char r; cin >> r; cc();
             if (r != 'y') _Exit(0);
         }
@@ -176,8 +176,8 @@ string strRep(string charIn, int amount)
     return output;
 }
 
-// display attempt function
-string dispAtt(bool isFinal)
+// format attempt function
+string formAtt(bool isFinal)
 {
     string n = isFinal == true ? " <-\n" : "\n";
     return " " + currentStr + " | " + formNum(attempt) + n;
