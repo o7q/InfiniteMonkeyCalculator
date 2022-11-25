@@ -1,6 +1,8 @@
-<img src="assets/images/icon.png">
+<img src="assets/images/monkey_typewriter.png" style="width: 40%;">
 
-# [<b>>> Download Latest</b>](https://github.com/o7q/InfiniteMonkeySimulator/releases/download/v2.0.0/InfiniteMonkeySimulator.exe)
+###### Chimpanzee probably not typing Hamlet
+
+# [<b>>> Download Latest</b>](https://github.com/o7q/InfiniteMonkeySimulator/releases/download/v2.1.0/InfiniteMonkeySimulator.exe)
 <h3>Simulate an immortal monkey typing on a typewriter.</h3>
 
 ---

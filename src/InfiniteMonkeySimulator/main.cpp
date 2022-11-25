@@ -6,42 +6,50 @@
 
 using namespace std;
 
+void program();
 string formNum(long long int rawNum);
 string strRep(string charIn, int amount);
+string dispAtt(bool isFinal);
 void cc();
 
-const string ver = "v2.0.0";
+const string ver = "v2.1.0";
+string currentStr;
+int attempt;
 
 main()
 {
     system(("title InfiniteMonkeySimulator " + ver).c_str());
-    system("color 3");
-    cout << "  ___       __ _      _ _       __  __          _            ___ _           _      _           \n"
-            " |_ _|_ _  / _(_)_ _ (_) |_ ___|  \\/  |___ _ _ | |_____ _  _/ __(_)_ __ _  _| |__ _| |_ ___ _ _ \n"
-            "  | || ' \\|  _| | ' \\| |  _/ -_) |\\/| / _ \\ ' \\| / / -_) || \\__ \\ | '  \\ || | / _` |  _/ _ \\ '_|\n"
-            " |___|_||_|_| |_|_||_|_|\\__\\___|_|  |_\\___/_||_|_\\_\\___|\\_, |___/_|_|_|_\\_,_|_\\__,_|\\__\\___/_|  \n"
-            "                                                        |__/                                    ";
-    cout << ver + "\n" + strRep(" ", 96) + "by o7q\n";
-    
+    system("color 7");
+    cout << "  ___ __  __ ___ \n"
+            " |_ _|  \\/  / __| InfiniteMonkeySimulator\n"
+            "  | || |\\/| \\__ \\ " + ver + "\n"
+            " |___|_|  |_|___/ by o7q\n";
+
+    program();
+    return 0;
+}
+
+void program()
+{
     while (true)
     {
-        cout << "\n+" + strRep("=", 45) + "+\n";
+        cout << "\n+" + strRep("=", 40) + "+\n";
 
-        cout << "\nSEARCH PHRASE (no spaces):\n-> ";
+        cout << "\n SPECIFY THE SEARCH PHRASE (no spaces):\n -> ";
         string input; cin >> input; cc();
 
         // alphabet configuration
 
         // alphabet input
-        cout << "\nCUSTOM ALPHABET (no spaces):\n"
-                "lower    (lowercase letters only)\n"
-                "upper    (uppercase letters only)\n"
-                "both     (lowercase and uppercase letters only)\n"
-                "num      (numbers only)\n"
-                "numlower (numbers and lowercase letters only)\n"
-                "numupper (numbers and uppercase letters only)\n"
-                "numboth  (numbers, lowercase, and uppercase letters only)\n"
-                "custom   (input your own)\n-> ";
+        cout << "\n SPECIFY THE ALPHABET (no spaces):\n"
+                "  lower    (lowercase letters only)\n"
+                "  upper    (uppercase letters only)\n"
+                "  both     (lowercase and uppercase letters only)\n"
+                "  num      (numbers only)\n"
+                "  numlower (numbers and lowercase letters only)\n"
+                "  numupper (numbers and uppercase letters only)\n"
+                "  numboth  (numbers, lowercase, and uppercase letters only)\n"
+                "  custom   (import a custom alphabet)\n -> ";
         string alphabet_input; cin >> alphabet_input; cc();
         // declare alphabet information
         string alphabet;
@@ -71,8 +79,11 @@ main()
         int alphabet_type_index = 0;
         for (int i = 0; i < 7; i++) if (alphabet_input != alphabet_types[i]) alphabet_type_index++;
         if (alphabet_type_index == sizeof(alphabet_types) / sizeof(alphabet_types[0])) alphabet = alphabet_input;
+        // split alphabet in chars
+        string s(alphabet);
+        vector<char> v(s.begin(), s.end());
 
-        cout << "\nMAXIMUM ATTEMPTS (! for infinite):\n-> ";
+        cout << "\n SPECIFY THE MAXIMUM ATTEMPTS (! for infinite):\n -> ";
         string attempts_str; cin >> attempts_str; cc();
         long long int attempts = attempts_str == "!" ? 9223372036854775807 : stoi(attempts_str);
 
@@ -83,53 +94,54 @@ main()
         const string attemptsText = attempts == 1 ? "ATTEMPT" : "ATTEMPTS";
 
         // create vars
-        int attempt = 0;
-        string finalStr;
+        attempt = 0;
+        long long int dispCount = 0;
         bool isRunning = true;
+        string finalStr;
         // mersenne twister
         srand(time(NULL));
         mt19937 gen(rand());
         uniform_int_distribution<> dist(0, alphabet_length - 1);
 
-        // split alphabet in chars
-        string s(alphabet);
-        vector<char> v(s.begin(), s.end());
-
-        cout << "\nIT WILL TAKE APPROXIMATELY " + formNum(attemptsApprox) + " ATTEMPTS TO FINISH!\nDO YOU WANT TO DISPLAY THE OUTPUT? (slow) (y = yes | anything else = no)\n-> ";
-        char displayOutput; cin >> displayOutput; cc();
+        cout << "\n IT WILL TAKE AROUND " + formNum(attemptsApprox) + " ATTEMPTS FOR THE MONKEY TO TYPE \"" + input + "\"!\n SPECIFY A DISPLAY ATTEMPT INTERVAL (a lower value displays more attempts but it is slower to calculate):\n -> ";
+        int dispInterval; cin >> dispInterval; cc();
         cout << endl;
 
-        cout << "READY! PRESS ANY KEY TO START...\n";
-        system("pause");
+        cout << " THE MONKEY IS READY! ENTER ANY KEY TO START... (enter 'r' to restart)\n -> ";
+        char r; cin >> r; cc();
+        if (r == 'r') program();
         cout << endl;
 
         for (int i = 0; i < attempts; i++)
         {
-            string str;
-            for (int n = 0; n < input_length; n++) { str += v[dist(gen)]; }
+            currentStr = "";
+            for (int n = 0; n < input_length; n++) { currentStr += v[dist(gen)]; }
             attempt++;
 
-            if (displayOutput == 'y') printf((str + " | " + formNum(attempt) + "\n").c_str());
+            dispCount++;
+            if (dispCount == dispInterval) { dispCount = 0; printf(dispAtt(false).c_str()); }
 
-            if (str == input)
+            if (currentStr == input)
             {
+                cout << endl << dispAtt(true);
                 isRunning = false;
-                cout << "\nFOUND \"" + input + "\" IN " + formNum(attempt) + " " + attemptsText + "! (max: " + formNum(attempts) + ")\nTRY ANOTHER? (y = yes | anything else = no)\n-> ";
+                cout << "\n FOUND \"" + input + "\" IN " + formNum(attempt) + " " + attemptsText + "! (max: " + formNum(attempts) + ")\n TRY ANOTHER? (y = yes | anything else = no)\n -> ";
                 char r; cin >> r; cc();
-                if (r == 'y') break; else return 0;
+                if (r == 'y') break; else _Exit(0);
             }
-            finalStr = str;
+            finalStr = currentStr;
         }
 
         if (finalStr != input && isRunning)
         {
-            cout << "\nCOULD NOT FIND \"" + input + "\" IN " + formNum(attempts) + " " + attemptsText +"!\nRETRY? (y = yes | anything else = no)\n-> ";
+            cout << "\n COULD NOT FIND \"" + input + "\" IN " + formNum(attempts) + " " + attemptsText +"!\n TRY ANOTHER? (y = yes | anything else = no)\n -> ";
             char r; cin >> r; cc();
-            if (r != 'y') return 0;
+            if (r != 'y') _Exit(0);
         }
     }
 }
 
+// format number function
 string formNum(long long int rawNum)
 {
     string numForm;
@@ -162,6 +174,13 @@ string strRep(string charIn, int amount)
     string output;
     for (int i = 0; i < amount; i++) output += charIn;
     return output;
+}
+
+// display attempt function
+string dispAtt(bool isFinal)
+{
+    string n = isFinal == true ? " <-\n" : "\n";
+    return " " + currentStr + " | " + formNum(attempt) + n;
 }
 
 // cin clear function
