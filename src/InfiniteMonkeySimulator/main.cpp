@@ -16,7 +16,7 @@ const string ver = "v2.1.2";
 string currentStr;
 long long int attempt;
 
-main()
+int main()
 {
     system(("title InfiniteMonkeySimulator " + ver).c_str());
     system("color 7");
