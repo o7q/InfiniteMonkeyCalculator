@@ -39,4 +39,4 @@ I made this for fun using the <b>Mersenne Twister</b> pseudorandom number genera
 ---
 
 <b>InfiniteMonkeySimulator</b> \
-Programmed with C++ and compiled using MinGW G++
+Written in C++ and compiled using MinGW G++
