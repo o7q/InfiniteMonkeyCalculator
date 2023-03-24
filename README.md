@@ -30,7 +30,7 @@ I made this for fun using the <b>Mersenne Twister</b> pseudorandom number genera
     - <b>Upper</b> Uppercase letters only
     - <b>Both</b> Lowercase and uppercase letters only
     - <b>Num</b> Numbers only
-    - <b>NumLower</b>Numbers and lowercase letters only
+    - <b>NumLower</b> Numbers and lowercase letters only
     - <b>NumUpper</b> Numbers and uppercase letters only
     - <b>NumBoth</b> Numbers, lowercase, and uppercase letters only
     - <b>Custom</b> Import a custom alphabet
